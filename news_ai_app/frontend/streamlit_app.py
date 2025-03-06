@@ -25,16 +25,24 @@ st.set_page_config(
 # API base URL - automatically detect local vs deployed
 import os
 
-# Check if we're running in Streamlit Cloud
-is_streamlit_cloud = os.environ.get("IS_STREAMLIT_CLOUD", "false").lower() == "true"
-
-# Set API URL based on environment
-if is_streamlit_cloud:
-    # Use the same domain for API in cloud deployment
-    API_BASE_URL = "/api"
+# Check if API URL is already in session state (set by production_app.py)
+if "API_BASE_URL" in st.session_state:
+    API_BASE_URL = st.session_state["API_BASE_URL"]
 else:
-    # Use localhost when running locally
-    API_BASE_URL = "http://localhost:8000/api"
+    # Check environment
+    is_streamlit_cloud = os.environ.get("IS_STREAMLIT_CLOUD", "false").lower() == "true"
+    is_production = os.environ.get("IS_PRODUCTION", "false").lower() == "true"
+    
+    # Set API URL based on environment
+    if is_streamlit_cloud:
+        # Use the same domain for API in cloud deployment
+        API_BASE_URL = "/api"
+    elif is_production:
+        # In production Docker environment
+        API_BASE_URL = "http://localhost:8000/api"
+    else:
+        # Use localhost when running locally
+        API_BASE_URL = "http://localhost:8000/api"
 
 
 # Helper Functions
@@ -594,5 +602,6 @@ def main():
         render_podcast_generator()
 
 
+# Make the main function importable for production_app.py
 if __name__ == "__main__":
     main()

@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  news_ai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"  # Streamlit
+      - "8000:8000"  # API
+    volumes:
+      - ./MINDLarge:/app/MINDLarge  # Mount dataset volume
+      - ./models:/app/models        # Mount models volume
+    environment:
+      - NEWS_API_KEY=e9b0f7a3c3004651a35b5f0b042e1828
+      - OPENAI_API_KEY=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
+      - HUGGING_FACE_API_KEY=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
+      - PYTHONPATH=/app
+      - OMP_NUM_THREADS=4
+      - MKL_NUM_THREADS=4
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

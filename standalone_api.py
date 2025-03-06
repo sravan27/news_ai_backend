@@ -26,8 +26,19 @@ if missing_vars:
     os.environ["NEWS_API_KEY"] = "e9b0f7a3c3004651a35b5f0b042e1828"
     os.environ["OPENAI_API_KEY"] = "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"
     os.environ["HUGGING_FACE_API_KEY"] = "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"
-    os.environ["MIND_DATASET_PATH"] = "/Users/sravansridhar/Documents/news_ai/MINDLarge"
-    logger.info("Environment variables set automatically")
+    
+    # Set MIND dataset path based on environment
+    if os.path.exists("/mount/src/news_ai_backend/MINDLarge"):
+        # Streamlit Cloud path
+        os.environ["MIND_DATASET_PATH"] = "/mount/src/news_ai_backend/MINDLarge"
+    elif os.path.exists("/app/MINDLarge"):
+        # Docker path
+        os.environ["MIND_DATASET_PATH"] = "/app/MINDLarge"
+    else:
+        # Local development path
+        os.environ["MIND_DATASET_PATH"] = os.path.join(os.path.dirname(os.path.abspath(__file__)), "MINDLarge")
+    
+    logger.info(f"Environment variables set automatically. MIND path: {os.environ['MIND_DATASET_PATH']}")
 
 # Create FastAPI app
 app = FastAPI(title="News AI API", version="1.0.0")
