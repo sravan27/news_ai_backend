@@ -12,13 +12,16 @@ if [ -z "$SAMPLE_SIZE" ]; then
     export SAMPLE_SIZE
 fi
 
+# Start timing
+START_TIME=$(date +%s)
+
 echo "Running optimized pipeline with SAMPLE_SIZE=$SAMPLE_SIZE"
 
 # Step 1: Run Silver Layer Processing
 echo "================================================================================"
 echo "🚀 STEP 1: SILVER LAYER PROCESSING 🚀"
 echo "================================================================================"
-$SCRIPT_DIR/scripts/optimize_silver_processing.py
+python $SCRIPT_DIR/scripts/optimize_silver_processing.py
 
 # Check if silver layer processing succeeded
 if [ $? -ne 0 ]; then

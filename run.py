@@ -55,8 +55,12 @@ if __name__ == "__main__":
     frontend_process = run_frontend()
     active_processes.append(frontend_process)
     
-    # Register signal handler for Ctrl+C
-    signal.signal(signal.SIGINT, handle_sigint)
+    # Only register signal handler if running in main thread (not in Streamlit cloud)
+    try:
+        signal.signal(signal.SIGINT, handle_sigint)
+    except ValueError:
+        # Skip signal handling when running in non-main thread (e.g., Streamlit Cloud)
+        print("Signal handling disabled - not running in main thread")
     
     # Stream logs from both processes
     with ThreadPoolExecutor(max_workers=2) as executor:

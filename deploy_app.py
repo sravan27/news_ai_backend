@@ -135,10 +135,17 @@ def main():
     if not verify_mind_dataset():
         sys.exit(1)
     
-    # Register signal handler for Ctrl+C
+    # Set up processes list
     global active_processes
     active_processes = []
-    signal.signal(signal.SIGINT, handle_sigint)
+    
+    # Register signal handler for Ctrl+C, but only in the main thread
+    try:
+        signal.signal(signal.SIGINT, handle_sigint)
+    except ValueError:
+        # We're not in the main thread, so we can't use signal handlers
+        logger.warning("Signal handlers can't be set (not in main thread)")
+        # In this case, we'll rely on the parent process to clean up
     
     # Start backend
     backend_process = run_backend()

@@ -1,0 +1,28 @@
+[server]
+# Streamlit server settings
+port = 8501
+enableCORS = true
+enableXsrfProtection = true
+maxUploadSize = 50
+maxMessageSize = 100
+
+[browser]
+# Browser behavior
+serverAddress = "localhost"
+gatherUsageStats = false
+
+[theme]
+# UI customization
+primaryColor = "#0366d6"
+backgroundColor = "#f7f7f7"
+secondaryBackgroundColor = "#e9ecef"
+textColor = "#333333"
+font = "sans serif"
+
+[logger]
+# Logging settings
+level = "info"
+
+[environment]
+# Environment variables for the app
+IS_STREAMLIT_CLOUD = "true"

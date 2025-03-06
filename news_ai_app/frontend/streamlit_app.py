@@ -22,8 +22,19 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# API base URL
-API_BASE_URL = "http://localhost:8000/api"
+# API base URL - automatically detect local vs deployed
+import os
+
+# Check if we're running in Streamlit Cloud
+is_streamlit_cloud = os.environ.get("IS_STREAMLIT_CLOUD", "false").lower() == "true"
+
+# Set API URL based on environment
+if is_streamlit_cloud:
+    # Use the same domain for API in cloud deployment
+    API_BASE_URL = "/api"
+else:
+    # Use localhost when running locally
+    API_BASE_URL = "http://localhost:8000/api"
 
 
 # Helper Functions
