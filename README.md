@@ -49,7 +49,29 @@ pip install -r requirements.txt
 python setup_app.py
 ```
 
-### Running the Application
+### Deployment Options
+
+#### 1. Streamlit Cloud Deployment (Recommended)
+
+For the simplest cloud deployment, use Streamlit Cloud:
+
+1. Connect your GitHub repository to Streamlit Cloud
+2. Set the main file to **production_app.py**
+3. Deploy!
+
+#### 2. Docker Deployment
+
+For a production-grade containerized deployment:
+
+```bash
+# Build and run with docker-compose
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+```
+
+#### 3. Local Development
 
 ```bash
 # Run the full application (API + Streamlit)
@@ -60,6 +82,9 @@ python standalone_api.py
 
 # Run just the Streamlit frontend
 cd news_ai_app/frontend && streamlit run streamlit_app.py
+
+# Run in production mode
+python production_app.py
 ```
 
 ### Data Processing Pipeline
