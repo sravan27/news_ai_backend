@@ -1,0 +1,81 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# macOS specific
+.DS_Store
+
+# Dataset files (large files)
+MINDLarge/
+MINDSmall/
+*.tsv
+*.vec
+
+# Generated data files
+ml_pipeline/data/bronze/*.parquet
+ml_pipeline/data/bronze/*.arrow
+ml_pipeline/data/silver/*.npy
+ml_pipeline/data/silver/*.parquet
+ml_pipeline/data/silver/tfidf_matrices/*.npz
+ml_pipeline/data/silver/tfidf_models/*.pkl
+ml_pipeline/data/silver/embeddings/
+ml_pipeline/data/gold/
+ml_pipeline/data/silicon/*/*.pkl
+ml_pipeline/data/silicon/*/*.pt
+ml_pipeline/data/silicon/*/*.parquet
+
+# Model files
+*.pkl
+*.pt
+*.model
+*.bin
+*.h5
+
+# Logs
+logs/
+*.log
+
+# MLflow
+mlruns/
+
+# Large binary files
+*.npy
+*.npz
+*.arrow
+*.parquet

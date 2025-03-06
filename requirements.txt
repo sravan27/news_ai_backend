@@ -1,0 +1,44 @@
+# Core dependencies
+fastapi>=0.95.0
+uvicorn>=0.21.0
+pydantic>=2.0.0
+python-dotenv>=1.0.0
+httpx>=0.24.0
+beautifulsoup4>=4.12.0
+colorlog>=4.7.2
+
+# Data processing
+pandas>=2.0.0
+numpy>=1.24.0
+scikit-learn>=1.2.0
+nltk>=3.8.0
+spacy>=3.6.0
+transformers>=4.34.0
+tqdm>=4.66.0
+
+# Database
+sqlalchemy>=2.0.0
+psycopg2-binary>=2.9.0
+alembic>=1.12.0
+
+# ML/NLP
+torch>=2.0.0
+tensorflow>=2.12.0
+langchain>=0.0.300
+langchain-community>=0.0.1
+langchain-core>=0.0.1
+openai>=1.0.0
+huggingface-hub>=0.17.0
+sentence-transformers>=2.2.0
+recbole>=1.1.1
+
+# Visualization
+plotly>=5.16.0
+matplotlib>=3.7.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+
+# Frontend
+streamlit>=1.27.0

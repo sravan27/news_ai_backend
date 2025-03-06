@@ -1,0 +1,1 @@
+"""Tests package for news_ai_app."""
